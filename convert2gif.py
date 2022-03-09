@@ -10,9 +10,9 @@ import imageio
 
 log_path = "example"
 gif_name = "diagram.gif"
-duration = 2
+# duration = 2
 # duration = 1
-# duration = 0.2
+duration = 0.2
 
 # 创建一个空列表，用来存源图像
 frames = []
