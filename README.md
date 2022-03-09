@@ -34,6 +34,11 @@ To quickly understand the idea of the proposed strategy, we can using the follow
 python3 run_demo.py
 ```
 
+Then, we can convert images in /example folder into an animated GIF by using:
+```
+python3 convert2gif.py
+```
+
 ## Comparisons
 
 In Fig. 2, <i>120</i> agents are randomly distributed in the square <i>[-4, 4] Ã— [-4, 4]</i>. Fig. 3 and Fig. 4 shows the comparison between the original communication topology and the topology after using RSRSP. 
@@ -52,11 +57,12 @@ In Fig. 2, <i>120</i> agents are randomly distributed in the square <i>[-4, 4] Ã
 
 ## Parameter Settings
 
-The initial distribution of MASs is called $DAS(n,R)$. All agents distribute in a circular region of radius $R$,
+The initial distribution of the MASs is called $DAS(n,R)$. All agents distribute in a circular region of radius $R$,
 and the number of agents that distribute randomly in each sector is the same.
 All agents are randomly distributed in $DAS(n,R)$.
 The MASs evolve under same initial topology using three strategies (i.e., SAN, Strategy1, Strategy2) respectively.
-We evaluate the convergence performance by the number of clusters when the MAS is stable. Smaller cluster number indicates better convergence performance. 
+We evaluate the convergence performance by the number of clusters when the MAS is stable. A smaller cluster number indicates better convergence performance. 
+We present some necessary parameter settings used in this paper as follows.
 
 |  Parameter   | Meaning  | Value |
 | :-----| :----- | :----- |
@@ -70,54 +76,5 @@ We evaluate the convergence performance by the number of clusters when the MAS i
 | delta_rotate  | rotation angle of each rotation | 1 |
 | base_vec  | basis vector of X-axis | np.array([1, 0]) |
 | base_sector_ranges  | reference angle of the initial 4 sectors | np.array([0, 90, 180, 270])|
-
-
-
-
-
-
-### Codes
-
-- **cfg.py** contains all parameters involved in the simulation. 
-- **generate_init_state.py** generates initial states of the MAS.
-- **utils.py** contains all functions involved in the simulation.
-- **run_strategy.py** evaluates three strategies (i.e., SAN, Strategy1, Strategy2)
-
-### Data Preparation
-Before evaluation, we first need to modify **cfg.py** according to our own needs.
-The meaning of these parameters are shown in the Table 1.
-
-
-Then, you can generate initial states of the MAS using the following simple command:
-```
-python3 generate_init_state.py
-```
-The initial states are saved with an **NPY** file created by **NumPy** library. The naming format of the file is: *n-radius.npy*
-
-
-### Basic Usage
-To evaluate the performance of the strategies, we can using the following simple command:
-```
-nohup python3 run_strategy.py &
-```
-
-Then we will find the simulation results in the project folder. 
-The results are saved with an **NPZ** file created by **NumPy** library. 
-The naming format of the file is: *n-radius.npz*.
-
-We can retrieve the results by using the following python code:
-```python
-import numpy as np
-from cfg import *
-
-data = np.load(f"{n}-{radius}.npz")
-
-print(data["cluster_nums"])         # the list of cluster numbers in each episode
-print(data["step_nums"])            # the list of running steps in each episode
-print(data["mean_step_nums"])       # the arithmetic mean of steps
-print(data["std_step_nums"])        # the standard deviation of steps
-print(data["mean_cluster_nums"])    # the arithmetic mean of cluster numbers
-print(data["std_cluster_nums"])     # the standard deviation of cluster numbers
-```
 
 *Remark: We can get results faster by reducing the accuracy (i.e., increasing delta_rotate)*
