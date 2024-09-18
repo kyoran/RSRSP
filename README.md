@@ -2,6 +2,7 @@
 
 ## Bibtex
 If this work is helpful for your research, please consider citing the following BibTeX entry.
+```
 @article{xie2023consensus,
   title={Consensus enhancement for multi-agent systems with rotating-segmentation perception},
   author={Xie, Guangqiang and Xu, Haoran and Li, Yang and Hu, Xianbiao and Wang, Chang-Dong},
@@ -12,6 +13,7 @@ If this work is helpful for your research, please consider citing the following 
   year={2023},
   publisher={Springer}
 }
+```
 
 
 ## Prerequisites
